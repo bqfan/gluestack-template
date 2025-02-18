@@ -1,0 +1,21 @@
+# .prettierignore
+
+# ignore generated files
+node_modules
+__tests__/
+.vscode/
+android/
+coverage/
+ios/
+.expo
+.expo-shared
+docs/
+cli/
+
+# ignore configuration files
+*.json
+*.config.*js
+*.config.*ts
+*rc.js
+*.yaml
+src/components/ui/**/*
