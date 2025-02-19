@@ -51,7 +51,7 @@ export default function TabTwoScreen() {
           <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to provide files for
           different screen densities
         </ThemedText>
-        <Image source={ReactLogo} style={{ alignSelf: 'center' }} />
+        <Image source={ReactLogo} className="self-center" />
         <ExternalLink href="https://reactnative.dev/docs/images">
           <ThemedText type="link">Learn more</ThemedText>
         </ExternalLink>
@@ -59,9 +59,7 @@ export default function TabTwoScreen() {
       <Collapsible title="Custom fonts">
         <ThemedText>
           Open <ThemedText type="defaultSemiBold">app/_layout.tsx</ThemedText> to see how to load{' '}
-          <ThemedText style={{ fontFamily: 'SpaceMono' }}>
-            custom fonts such as this one.
-          </ThemedText>
+          <ThemedText className="font-spaceMono">custom fonts such as this one.</ThemedText>
         </ThemedText>
         <ExternalLink href="https://docs.expo.dev/versions/latest/sdk/font">
           <ThemedText type="link">Learn more</ThemedText>
