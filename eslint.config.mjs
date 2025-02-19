@@ -1,9 +1,13 @@
 import js from '@eslint/js';
-import reactPlugin from 'eslint-plugin-react';
-import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import typescriptEslintPlugin from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import prettierPlugin from 'eslint-plugin-prettier';
+import reactPlugin from 'eslint-plugin-react';
+import reactHooksPlugin from 'eslint-plugin-react-hooks';
+import reactNativePlugin from 'eslint-plugin-react-native';
+import simpleImportSort from 'eslint-plugin-simple-import-sort';
+import unicorn from 'eslint-plugin-unicorn';
+import unusedImports from 'eslint-plugin-unused-imports';
 import globals from 'globals';
 
 export default [
@@ -62,17 +66,23 @@ export default [
     },
     rules: {
       ...prettierPlugin.configs.recommended.rules,
-      // 'prettier/prettier': 'error',
-      'prettier/prettier': [
-        0,
-        {
-          singleQuote: true,
-          endOfLine: 'auto',
-        },
-      ],
+      'prettier/prettier': 'error',
+    //   'prettier/prettier': [
+    //     0,
+    //     {
+    //       singleQuote: true,
+    //       endOfLine: 'auto',
+    //     },
+    //   ],
     },
   },
   {
+    plugins: {
+      'react-native': reactNativePlugin,
+      'unused-imports': unusedImports,
+      'simple-import-sort': simpleImportSort,
+      unicorn,
+    },
     // Custom rules
     rules: {
       // 'quotes': ['error', 'single', { avoidEscape: true }],
@@ -81,9 +91,9 @@ export default [
       '@typescript-eslint/no-empty-function': 'off',
       'react/display-name': 'off',
       'react/prop-types': 'off',
-      'react/react-in-jsx-scope': 'off',
+      // 'react/react-in-jsx-scope': 'off',
       'react/no-unescaped-entities': 'off',
-      'react-hooks/exhaustive-deps': 'off',
+      // 'react-hooks/exhaustive-deps': 'off',
       'no-undef': 'off',
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
@@ -92,7 +102,36 @@ export default [
       '@typescript-eslint/ban-types': 'off',
       '@typescript-eslint/no-non-null-assertion': 'off',
       '@typescript-eslint/no-var-requires': 'off',
-      '@typescript-eslint/no-require-imports': 'off'
+      '@typescript-eslint/no-require-imports': 'off',
+
+      // Core React rules
+      'react/jsx-uses-react': 'error',
+      'react/jsx-uses-vars': 'error',
+      'react/react-in-jsx-scope': 'off',
+
+      // React Hooks
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
+
+      // React Native specific
+      'react-native/no-unused-styles': 'error',
+      'react-native/split-platform-components': 'warn',
+      'react-native/no-inline-styles': 'warn',
+      'react-native/no-color-literals': 'warn',
+  
+      // Import management
+      'unused-imports/no-unused-imports': 'error',
+      'simple-import-sort/imports': 'error',
+      'simple-import-sort/exports': 'error',
+
+      // File naming convention
+      'unicorn/filename-case': [
+        'error',
+        {
+          case: 'kebabCase',
+          ignore: ['\\.(ios|android)\\.(js|ts)x?$'], // Ignore platform-specific files
+        },
+      ],
     },
   },
   {
@@ -107,6 +146,7 @@ export default [
     ignores: [
       '**/node_modules/**',
       'src/components/ui/*',
+      '*.d.ts',
       '**/android/**',
       '**/ios/**',
       '**/web-build/**',
