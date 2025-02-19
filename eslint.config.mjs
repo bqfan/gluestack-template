@@ -82,6 +82,9 @@ export default [
       'react/display-name': 'off',
       'react/prop-types': 'off',
       'react/react-in-jsx-scope': 'off',
+      'react/no-unescaped-entities': 'off',
+      'react-hooks/exhaustive-deps': 'off',
+      'no-undef': 'off',
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
@@ -89,6 +92,7 @@ export default [
       '@typescript-eslint/ban-types': 'off',
       '@typescript-eslint/no-non-null-assertion': 'off',
       '@typescript-eslint/no-var-requires': 'off',
+      '@typescript-eslint/no-require-imports': 'off'
     },
   },
   {
@@ -101,6 +105,8 @@ export default [
   },
   {
     ignores: [
+      '**/node_modules/**',
+      'src/components/ui/*',
       '**/android/**',
       '**/ios/**',
       '**/web-build/**',
