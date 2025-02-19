@@ -1,10 +1,14 @@
 import js from '@eslint/js';
-import reactPlugin from 'eslint-plugin-react';
-import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import typescriptEslintPlugin from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import prettierPlugin from 'eslint-plugin-prettier';
+import reactPlugin from 'eslint-plugin-react';
+import reactHooksPlugin from 'eslint-plugin-react-hooks';
+import simpleImportSort from 'eslint-plugin-simple-import-sort';
+import unicorn from 'eslint-plugin-unicorn';
+import unusedImports from 'eslint-plugin-unused-imports';
 import globals from 'globals';
+
 
 export default [
   js.configs.recommended,
@@ -62,17 +66,22 @@ export default [
     },
     rules: {
       ...prettierPlugin.configs.recommended.rules,
-      // 'prettier/prettier': 'error',
-      'prettier/prettier': [
-        0,
-        {
-          singleQuote: true,
-          endOfLine: 'auto',
-        },
-      ],
+      'prettier/prettier': 'error',
+    //   'prettier/prettier': [
+    //     0,
+    //     {
+    //       singleQuote: true,
+    //       endOfLine: 'auto',
+    //     },
+    //   ],
     },
   },
   {
+    plugins: {
+      'unused-imports': unusedImports,
+      'simple-import-sort': simpleImportSort,
+      unicorn,
+    },
     // Custom rules
     rules: {
       // 'quotes': ['error', 'single', { avoidEscape: true }],
@@ -92,7 +101,21 @@ export default [
       '@typescript-eslint/ban-types': 'off',
       '@typescript-eslint/no-non-null-assertion': 'off',
       '@typescript-eslint/no-var-requires': 'off',
-      '@typescript-eslint/no-require-imports': 'off'
+      '@typescript-eslint/no-require-imports': 'off',
+
+      // Import management
+      'unused-imports/no-unused-imports': 'error',
+      'simple-import-sort/imports': 'error',
+      'simple-import-sort/exports': 'error',
+
+      // File naming convention
+      'unicorn/filename-case': [
+        'error',
+        {
+          case: 'kebabCase',
+          ignore: ['\\.(ios|android)\\.(js|ts)x?$'], // Ignore platform-specific files
+        },
+      ],
     },
   },
   {
@@ -107,6 +130,7 @@ export default [
     ignores: [
       '**/node_modules/**',
       'src/components/ui/*',
+      '*.d.ts',
       '**/android/**',
       '**/ios/**',
       '**/web-build/**',

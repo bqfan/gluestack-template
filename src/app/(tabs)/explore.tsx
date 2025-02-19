@@ -1,12 +1,12 @@
-import { StyleSheet, Image, Platform } from 'react-native';
+import { Image, Platform, StyleSheet } from 'react-native';
 
-import { Collapsible } from '@/components/Collapsible';
-import { ExternalLink } from '@/components/ExternalLink';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { IconSymbol } from '@/components/ui/IconSymbol';
 import ReactLogo from '@/assets/images/react-logo.png';
+import { IconSymbol } from '@/components/ui/IconSymbol';
+import { Collapsible } from '@/src/components/collapsible';
+import { ExternalLink } from '@/src/components/external-link';
+import ParallaxScrollView from '@/src/components/parallax-scroll-view';
+import { ThemedText } from '@/src/components/themed-text';
+import { ThemedView } from '@/src/components/themed-view';
 
 export default function TabTwoScreen() {
   return (
@@ -19,7 +19,8 @@ export default function TabTwoScreen() {
           name="chevron.left.forwardslash.chevron.right"
           style={styles.headerImage}
         />
-      }>
+      }
+    >
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title">Explore</ThemedText>
       </ThemedView>
