@@ -43,6 +43,9 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
 
+      - name: Set up pnpm
+        run: pnpm setup
+
       - name: Install Expo CLI
         run: pnpm add -g expo-cli
 
