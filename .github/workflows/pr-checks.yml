@@ -23,6 +23,7 @@ jobs:
 
     - name: Setup pnpm
       run: |
+        export SHELL=$(which bash)
         pnpm setup
         source ~/.bashrc
         pnpm add -g expo-cli
