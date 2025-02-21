@@ -8,53 +8,43 @@ jobs:
   quality-checks:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: 📦 Checkout project repo
         uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
         with:
-          node-version: 18.x
-          cache: 'pnpm'
+          fetch-depth: 0
 
-      - name: Install pnpm
-        run: npm install -g pnpm
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
+      - name: 📦 Setup Node + PNPM + install deps
+        uses: ./.github/actions/setup-node-pnpm-install
+  
       - name: Lint check
         run: pnpm lint
-
+  
       - name: Typecheck
         run: pnpm typecheck
-
+  
       - name: Run tests
         run: pnpm test
 
   expo-doctor:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+        - name: 📦 Checkout project repo
+          uses: actions/checkout@v4
+          with:
+            fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18.x
+        - name: 📦 Setup Node + PNPM + install deps
+          uses: ./.github/actions/setup-node-pnpm-install
 
-      - name: Install Expo CLI
-        run: pnpm add -g expo-cli
+        - name: Run Expo Doctor
+          run: |
+            mkdir -p .expo
+            npx expo-doctor --html --output .expo/expo-doctor.md
 
-      - name: Run Expo Doctor
-        run: |
-          mkdir -p .expo
-          npx expo-doctor --html --output .expo/expo-doctor.md
-
-      - name: Post Expo Doctor report
-        uses: marocchino/sticky-pull-request-comment@v2
-        with:
-          header: expo-doctor
-          path: ${{ github.workspace }}/.expo/expo-doctor.md
-          message: "No Expo Doctor report generated"
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        - name: Post Expo Doctor report
+          uses: marocchino/sticky-pull-request-comment@v2
+          with:
+            header: expo-doctor
+            path: ${{ github.workspace }}/.expo/expo-doctor.md
+            message: "No Expo Doctor report generated"
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
