@@ -33,6 +33,15 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 6.32.2  # Specify the desired pnpm version here
+          run_install: false
+          dest: ~/setup-pnpm
+          package_json_file: package.json
+          standalone: false
+
       - name: 📦 Setup Node + PNPM + install deps
         uses: ./.github/actions/setup-node-pnpm-install
 
