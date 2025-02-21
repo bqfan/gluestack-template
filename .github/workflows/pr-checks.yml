@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up Node.js
       uses: actions/setup-node@v3
@@ -23,6 +23,8 @@ jobs:
 
     - name: Set up pnpm global bin directory
       run: pnpm setup
+      env:
+        SHELL: bash
     
     - name: Install expo-cli globally
       run: pnpm add -g expo-cli
