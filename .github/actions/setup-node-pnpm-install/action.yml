@@ -19,7 +19,7 @@ runs:
     - name: Setup pnpm
       uses: pnpm/action-setup@v4
       with:
-        version: 10.4.1  # Specify the desired pnpm version here
+        version: 6.32.2   # Specify the desired pnpm version here
         run_install: false
         dest: ~/setup-pnpm
         package_json_file: package.json
