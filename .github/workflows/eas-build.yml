@@ -1,0 +1,54 @@
+name: EAS Build
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'app.json'
+      - 'package.json'
+      - 'android/**'
+      - 'ios/**'
+      - '**/*.ts'
+      - '**/*.tsx'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Cache EAS project
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.npm/_cacache
+            node_modules
+            .expo
+          key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}
+
+      - name: Install EAS CLI
+        run: pnpm add -g eas-cli
+
+      - name: Configure EAS
+        run: eas build:configure
+
+      - name: Build Android
+        run: eas build -p android --non-interactive --no-wait
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Build iOS
+        run: eas build -p ios --non-interactive --no-wait
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}

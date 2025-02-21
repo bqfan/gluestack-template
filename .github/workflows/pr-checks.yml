@@ -1,0 +1,57 @@
+name: PR Checks
+
+on:
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  quality-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint check
+        run: pnpm lint
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Run tests
+        run: pnpm test
+
+  expo-doctor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+
+      - name: Install Expo CLI
+        run: pnpm add -g expo-cli
+
+      - name: Run Expo Doctor
+        run: |
+          mkdir -p .expo
+          npx expo-doctor --html --output .expo/expo-doctor.md
+
+      - name: Post Expo Doctor report
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: expo-doctor
+          path: ${{ github.workspace }}/.expo/expo-doctor.md
+          message: "No Expo Doctor report generated"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
