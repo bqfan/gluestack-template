@@ -21,13 +21,11 @@ jobs:
     - name: Install pnpm
       run: npm install -g pnpm
 
-    - name: Set up pnpm global bin directory
-      run: pnpm setup
-      env:
-        SHELL: bash
-    
-    - name: Install expo-cli globally
-      run: pnpm add -g expo-cli
+    - name: Setup pnpm
+      run: |
+        pnpm setup
+        source ~/.bashrc
+        pnpm add -g expo-cli
 
     - name: Run tests
       run: pnpm test
