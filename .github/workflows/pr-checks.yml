@@ -13,20 +13,26 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Set up Node.js
+      - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: 18.x
-
+        node-version: '18.x'
+  
     - name: Install pnpm
       run: npm install -g pnpm
-
-    - name: Setup pnpm
+  
+    - name: Set up pnpm
       run: |
-        export SHELL=$(which bash)
         pnpm setup
         source ~/.bashrc
-        pnpm add -g expo-cli
+  
+    - name: Verify pnpm setup
+      run: |
+        echo $PNPM_HOME
+        echo $PATH
+  
+    - name: Install expo-cli globally using pnpm
+      run: pnpm add -g expo-cli
 
     - name: Run tests
       run: pnpm test
