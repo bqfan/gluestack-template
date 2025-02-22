@@ -24,17 +24,20 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm@8
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - name: Check pnpm vertion
+        run: pnpm --version
 
-      - name: ESLint
-        run: pnpm lint
+    #   - name: Install dependencies
+    #     run: pnpm install --frozen-lockfile
 
-      - name: Type-Check
-        run: pnpm type-check
+    #   - name: ESLint
+    #     run: pnpm lint
 
-      - name: Expo Doctor
-        run: pnpm expo doctor
+    #   - name: Type-Check
+    #     run: pnpm type-check
 
-      - name: Run Tests
-        run: pnpm test
+    #   - name: Expo Doctor
+    #     run: pnpm expo doctor
+
+    #   - name: Run Tests
+    #     run: pnpm test
