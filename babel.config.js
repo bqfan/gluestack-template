@@ -10,8 +10,6 @@ module.exports = function(api) {
             root: ["./"],
 
             alias: {
-                "@/constants": "./src/constants",
-                "@/hooks": "./src/hooks",
                 "@/components/": "./src/components",
                 "@/assets": "./assets",
                 "tailwind.config": "./tailwind.config.js"
