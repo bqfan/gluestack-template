@@ -3,6 +3,7 @@
   "main": "expo-router/entry",
   "version": "1.0.0",
   "packageManager": "pnpm@10.4.1",
+  "expo.doctor.reactNativeDirectoryCheck.listUnknownPackages": false,
   "scripts": {
     "start": "cross-env EXPO_NO_DOTENV=1 expo start",
     "start:staging": "cross-env APP_ENV=staging pnpm run start",
