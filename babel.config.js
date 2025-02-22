@@ -7,9 +7,11 @@ module.exports = function(api) {
         }], "nativewind/babel"],
 
         plugins: [["module-resolver", {
-            root: ["./src"],
+            root: ["./"],
 
             alias: {
+                "@/constants": "./src/constants",
+                "@/hooks": "./src/hooks",
                 "@/components/": "./src/components",
                 "@/assets": "./assets",
                 "tailwind.config": "./tailwind.config.js"
