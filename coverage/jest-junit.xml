@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="2" failures="0" errors="0" time="0.761">
-  <testsuite name="src/components/themed-text.test.tsx" errors="0" failures="0" skipped="0" timestamp="2025-02-19T15:46:16" time="0.241" tests="1">
-    <testcase classname="" name="renders correctly" time="0.027">
+<testsuites name="jest tests" tests="2" failures="0" errors="0" time="1.643">
+  <testsuite name="src/components/sum.test.tsx" errors="0" failures="0" skipped="0" timestamp="2025-02-22T16:28:17" time="0.475" tests="1">
+    <testcase classname="" name="adds 1 + 2 to equal 3" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="src/components/sum.test.tsx" errors="0" failures="0" skipped="0" timestamp="2025-02-19T15:46:16" time="0.359" tests="1">
-    <testcase classname="" name="adds 1 + 2 to equal 3" time="0.001">
+  <testsuite name="src/components/themed-text.test.tsx" errors="0" failures="0" skipped="0" timestamp="2025-02-22T16:28:17" time="1.216" tests="1">
+    <testcase classname="" name="renders correctly" time="0.185">
     </testcase>
   </testsuite>
 </testsuites>
