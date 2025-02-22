@@ -59,3 +59,8 @@ jobs:
         with:
           header: expo-doctor
           path: .expo/expo-doctor.md
+          message: |
+            Expo Doctor Report:
+            ```
+            $(cat .expo/expo-doctor.md)
+            ```
