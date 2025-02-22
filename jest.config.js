@@ -12,7 +12,7 @@ module.exports = {
     ],
     testMatch: ['**/?(*.)+(spec|test).ts?(x)'],
     moduleNameMapper: {
-      '^@gluestack-ui/nativewind-utils/(.*)$': '<rootDir>/node_modules/@gluestack-ui/nativewind-utils/$1'
+      '^@/(.*)$': '<rootDir>/src/$1',
     },
     collectCoverageFrom: [
       'src/**/*.{ts,tsx}',
