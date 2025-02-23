@@ -153,6 +153,7 @@ export default [
       '**/node_modules/**',
       '**/dist/**',
       '**/.expo/**',
+      '**.config.**'
     ],
   },
 ];

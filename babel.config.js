@@ -10,6 +10,7 @@ module.exports = function(api) {
             root: ["./"],
 
             alias: {
+                '@env': './src/lib/env.js',
                 "@/assets": "./assets",
                 "@/components": "./src/components",
                 "@/constants": "./src/constants",
