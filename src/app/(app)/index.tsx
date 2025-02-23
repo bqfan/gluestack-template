@@ -1,32 +1,23 @@
-import { FlashList } from '@shopify/flash-list';
-import React from 'react';
+import * as React from 'react';
 
-import type { Post } from '@/api';
-import { usePosts } from '@/api';
-import { Card } from '@/components/card';
-import { EmptyList, FocusAwareStatusBar, Text, View } from '@/components/ui';
+import { Buttons } from '@/components/buttons';
+import { Colors } from '@/components/colors';
+import { Inputs } from '@/components/inputs';
+import { Typography } from '@/components/typography';
+import { FocusAwareStatusBar, SafeAreaView, ScrollView } from '@/components/ui';
 
-export default function Feed() {
-  const { data, isPending, isError } = usePosts();
-  const renderItem = React.useCallback(({ item }: { item: Post }) => <Card {...item} />, []);
-
-  if (isError) {
-    return (
-      <View>
-        <Text> Error Loading data </Text>
-      </View>
-    );
-  }
+export default function Home() {
   return (
-    <View className="flex-1 ">
+    <>
       <FocusAwareStatusBar />
-      <FlashList
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={(_, index) => `item-${index}`}
-        ListEmptyComponent={<EmptyList isLoading={isPending} />}
-        estimatedItemSize={300}
-      />
-    </View>
+      <ScrollView className="px-4">
+        <SafeAreaView className="flex-1">
+          <Typography />
+          <Colors />
+          <Buttons />
+          <Inputs />
+        </SafeAreaView>
+      </ScrollView>
+    </>
   );
 }
